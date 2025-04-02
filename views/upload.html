@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Book</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+
+<body>
+    <h1>Add a New Book</h1>
+
+    <form id="uploadForm">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="number" name="pages" placeholder="Number of Pages">
+        <input type="date" name="publishedDate">
+
+        <label for="author">Select Author:</label>
+        <select id="authorSelect" name="authorId">
+            <option value="">Select an existing author</option>
+        </select>
+
+        <p>Or create a new author:</p>
+        <input type="text" name="newAuthor" placeholder="New Author Name">
+        <input type="date" name="birthdate">
+        <input type="text" name="nationality" placeholder="Nationality">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="/public/script.js"></script>
+</body>
+
+</html>
