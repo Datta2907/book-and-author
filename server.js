@@ -70,4 +70,10 @@ app.get('/min-books', async (req, res) => {
     res.json(books);
 });
 
+app.get('/min-age', async (req, res) => {
+    const { age } = req.query;
+    const authors = await Author.find({ age: { $gte: age } });
+    res.json(authors);
+});
+
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

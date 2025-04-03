@@ -10,10 +10,14 @@
 
 <body>
     <h2>Search Books by Pages</h2>
-    <input type="number" id="pageQuery" placeholder="Enter min pages">
+    <input type="number" id="pageQuery" placeholder="Enter min pages" required>
     <button onclick="queryBooks()">Search</button>
-
-    <ul id="results"></ul>
+    <ul id="book-results"></ul>
+    <h3>Or</h3>
+    <h2>Search Authors by Age</h2>
+    <input type="number" id="ageQuery" placeholder="Enter min Age" required>
+    <button onclick="queryAuthors()">Search</button>
+    <ul id="author-results"></ul>
 
     <script src="/public/script.js"></script>
 </body>

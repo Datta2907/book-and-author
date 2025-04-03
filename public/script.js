@@ -39,7 +39,7 @@ if (document.getElementById("book-list")) {
                                 <b>Book Published Date:</b> ${book.publishedDate.substring(0, 10)} <br>
                                 <b>Author Nationality:</b> ${book.author.nationality} <br>
                                 <b>Author Age:</b> ${book.author.age} <br>
-                                <b>Author Birthday:</b> ${book.author.birthdate.substring(0, 10)} <hr>`;
+                                <b>Author Birthdate:</b> ${book.author.birthdate.substring(0, 10)} <hr>`;
                 bookList.appendChild(li);
             });
         });
@@ -51,7 +51,7 @@ function queryBooks() {
     fetch(`/min-books?pages=${pages}`)
         .then(response => response.json())
         .then(data => {
-            let list = document.getElementById("results");
+            let list = document.getElementById("book-results");
             list.innerHTML = "";
             data.forEach(book => {
                 let item = document.createElement("li");
@@ -64,18 +64,19 @@ function queryBooks() {
 }
 
 // Query books based on age of authors
-function queryBooks() {
-    const pages = document.getElementById("pageQuery").value;
-    fetch(`/min-books?pages=${pages}`)
+function queryAuthors() {
+    const age = document.getElementById("ageQuery").value;
+    fetch(`/min-age?age=${age}`)
         .then(response => response.json())
         .then(data => {
-            let list = document.getElementById("results");
+            let list = document.getElementById("author-results");
             list.innerHTML = "";
-            data.forEach(book => {
+            data.forEach(author => {
                 let item = document.createElement("li");
-                item.innerHTML = `<b>Title:</b> ${book.title} <br>
-                                  <b>Pages:</b> ${book.pages} <br>
-                                  <b>Author:</b> ${book.author.name} <hr>`;
+                item.innerHTML = `<b>Name:</b> ${author.name} <br>
+                                  <b>Age:</b> ${author.name} <br>
+                                  <b>Nationality:</b> ${author.nationality} <br>
+                                  <b>Birthdate:</b> ${author.birthdate.substring(0, 10)} <hr>`;
                 list.appendChild(item);
             });
         });
