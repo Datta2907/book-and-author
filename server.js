@@ -38,13 +38,13 @@ app.get('/query', (req, res) => {
 });
 // Handle book and author creation
 app.post('/books', async (req, res) => {
-    const { title, pages, publishedDate, authorId, newAuthor, birthdate, nationality } = req.body;
+    const { title, pages, publishedDate, authorId, newAuthor, birthdate, nationality, age } = req.body;
     let author
     if (authorId) {
         author = await Author.findById(authorId);
     }
     if (!authorId && newAuthor) {
-        author = new Author({ name: newAuthor, birthdate, nationality });
+        author = new Author({ name: newAuthor, birthdate, nationality, age });
         await author.save();
     }
     const book = new Book({ title, pages, publishedDate, author: author._id });
@@ -56,11 +56,6 @@ app.post('/books', async (req, res) => {
 app.get('/books-and-authors', async (req, res) => {
     const books = await Book.find().populate('author');
     res.json(books);
-});
-
-// Query books based on a number (pages)
-app.get('/customize-query', (req, res) => {
-    res.render('query');
 });
 
 // Get Authors
