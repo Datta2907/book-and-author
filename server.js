@@ -5,7 +5,7 @@ const Book = require('./models/book');
 const Author = require('./models/author');
 const cors = require('cors');
 const path = require('path')
-const PORT = 22922;
+const PORT = 3000;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.static(path.join(__dirname)));
 
 // Connect to local MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/mydatabase', {
+mongoose.connect('mongodb://mongo:27017/mydatabase', {
 })
     .then(() => console.log("✅ Connected to MongoDB locally"))
     .catch(err => console.error("❌ MongoDB Connection Error:", err));

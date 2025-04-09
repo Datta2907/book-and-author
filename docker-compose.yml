@@ -1,30 +1,22 @@
-version: '3.4'
-
+version: '3'
 services:
-    
-  node:
-    restart: always
-    container_name: mongo_test
-    environment:
-      NODE_NUMBER: 1
-    ports:
-      - '22922:3000' #note you will need to change 2106 to your assigned port number
+  app:
+
     build:
       context: .
       dockerfile: ./Dockerfile.node
+    ports:
+      - "22922:3000"  # Maps the container port 3000 to external port 6622.
     depends_on:
-      mongo:
-        condition: service_healthy
-        restart: true
-
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mydb
   mongo:
     image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    volumes: 
-      database_volume:/data/db
+    #ports:
+    #  - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
 volumes:
-  database_volume:
+  mongo-data:
